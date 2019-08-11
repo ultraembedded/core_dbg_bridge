@@ -37,6 +37,19 @@
 //-----------------------------------------------------------------
 
 module dbg_bridge
+//-----------------------------------------------------------------
+// Params
+//-----------------------------------------------------------------
+#(
+     parameter CLK_FREQ         = 14745600
+    ,parameter UART_SPEED       = 115200
+    ,parameter AXI_ID           = 4'd0
+    ,parameter GPIO_ADDRESS     = 32'hf0000000
+    ,parameter STS_ADDRESS      = 32'hf0000004
+)
+//-----------------------------------------------------------------
+// Ports
+//-----------------------------------------------------------------
 (
     // Inputs
      input           clk_i
@@ -77,15 +90,6 @@ module dbg_bridge
 );
 
 
-
-//-----------------------------------------------------------------
-// Config
-//-----------------------------------------------------------------
-parameter CLK_FREQ          = 14745600;
-parameter UART_SPEED        = 115200;
-parameter GPIO_ADDRESS      = 32'hf0000000 + 32'h0;
-parameter STS_ADDRESS       = 32'hf0000000 + 32'h4;
-parameter AXI_ID            = 4'd0;
 
 //-----------------------------------------------------------------
 // Defines
@@ -608,7 +612,7 @@ else
 
 always @ (posedge clk_i or posedge rst_i)
 if (rst_i)
-    gpio_output_q <= 32'b0;
+    gpio_output_q <= 32'h0;
 else if (gpio_wr_q)
     gpio_output_q <= data_q[31:0];
 
