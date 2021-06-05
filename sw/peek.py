@@ -23,7 +23,7 @@ def main(argv):
     value  = bus_if.read32(addr)
 
     if not args.quiet:
-        print "%08x: 0x%08x (%d)" % (addr, value, value)
+        print("%08x: 0x%08x (%d)" % (addr, value, value))
     else:
         sys.exit(value)
 
