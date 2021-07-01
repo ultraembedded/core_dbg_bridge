@@ -159,7 +159,7 @@ u_uart
     .rst_i(rst_i),
 
     // Control
-    .bit_div_i(CLK_FREQ / UART_SPEED),
+    .bit_div_i((CLK_FREQ / UART_SPEED) - 1),
     .stop_bits_i(1'b0), // 0 = 1, 1 = 2
 
     // Transmit
